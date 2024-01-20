@@ -56,6 +56,14 @@ public class PostServiceImpl implements PostService {
 		
 	}
 
+	@Override
+	public List<Post> findPostsByTitle(String title) {
+		
+		return postrepo.findPostsByTitle(title);
+	}
+
+	
+
 	
 	
 

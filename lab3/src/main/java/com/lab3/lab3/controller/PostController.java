@@ -50,6 +50,10 @@ public class PostController {
 		return post;
 	}
 	
-
+  @GetMapping("/post-with-title/{title}")
+   public List<Post> findPostsByTitle(@PathVariable String title) {
+		
+		return postservice.findPostsByTitle(title);
+	}
 
 }

@@ -67,5 +67,15 @@ public class UserServiceImpl implements UserService {
 		user.addPostToUser(post);
 		}
 
+	@Override
+	public List<User> findUsersByTitleInPosts(String title) {
+		
+		return userrepo.findUsersByTitleInPosts(title);
+	}
+
+	
+
+	
+
 
 }

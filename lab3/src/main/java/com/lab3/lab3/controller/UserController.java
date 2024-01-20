@@ -52,10 +52,10 @@ public void deleteUserById(@PathVariable long userid) {
 	userService.deleteUser(userid);
 }
 
-@GetMapping("/{count}/posts")
-public List<User> findAllUsersMoreThanNPosts(@PathVariable int count){
+@GetMapping("/{numposts}/userposts")
+public List<User> findAllUsersMoreThanNPosts(@PathVariable int numposts){
 	
-	return userService.findAllUsersMoreThanNPosts(count);
+	return userService.findAllUsersMoreThanNPosts(numposts);
 	
 }
 	
@@ -64,7 +64,11 @@ public void savePost(@RequestBody PostDto postDto, @PathVariable long id) {
 	
 	userService.savePost(postDto,id) ;
 }
-
+@GetMapping("/by-post-title/{title}")
+public List<User> findUsersByTitleInPosts(@PathVariable String title){
+	
+	return userService.findUsersByTitleInPosts(title);
+}
 	
 
 }

@@ -19,5 +19,5 @@ public interface UserService {
 	void deleteUser(long id);
 	public List<User> findAllUsersMoreThanNPosts(int numposts);
 	void savePost(PostDto postDto,long userid);
-
+	public List<User> findUsersByTitleInPosts(String title);
 }

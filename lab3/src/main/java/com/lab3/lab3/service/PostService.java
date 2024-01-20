@@ -5,6 +5,7 @@ import java.util.List;
 import com.lab3.lab3.entity.Comment;
 import com.lab3.lab3.entity.Post;
 import com.lab3.lab3.entity.PostDto;
+import com.lab3.lab3.entity.User;
 
 public interface PostService {
 	List<Post> findAllPosts();
@@ -12,6 +13,8 @@ public interface PostService {
 	void deletePostById(long id);
 	void updatePostById(Post  post,long id);
 	void savePost(PostDto postDto);
+	List<Post>findPostsByTitle(String title);
+
 	
 	
 }
