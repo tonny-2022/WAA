@@ -13,17 +13,14 @@ public class ExecutionTime {
 	
 private org.slf4j.Logger  logger= LoggerFactory.getLogger(getClass());
 	
-	@Around("execution(* ccom.labs.lab4.ExecutionTime.*.*(..))")
-	public void showExceutionTime(JoinPoint joinpoint) throws Throwable {
+long startTimeInMs=System.currentTimeMillis();
+@Around("@annotation(com.lab4.lab4.annotations.ExcutionTime)")
+public void showExceutionTime(JoinPoint joinpoint) throws Throwable {
+
+	long endTimeInMs=System.currentTimeMillis();
 	
-		long startTimeInMs=System.currentTimeMillis();
+	long timeduration=endTimeInMs-startTimeInMs;
 	
-		long endTimeInMs=System.currentTimeMillis();
-		
-		long timeduration=endTimeInMs-startTimeInMs;
-		
-		logger.info("Time taken to this  nethod is  {} ms ",joinpoint,timeduration);
-		
-		
-	}
+	logger.info("Around Aspect:{},this  is excuted in {} ms ",joinpoint , timeduration);
+}
 }
