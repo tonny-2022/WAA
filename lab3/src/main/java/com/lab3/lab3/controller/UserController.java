@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lab3.lab3.annotations.ExcutionTime;
 import com.lab3.lab3.entity.Post;
 import com.lab3.lab3.entity.PostDto;
 import com.lab3.lab3.entity.User;
@@ -31,6 +32,7 @@ public List<User> findAllUsers(){
 	return userService.findAllUsers();
 }
 @GetMapping("/{id}")
+@ExcutionTime
 public User findUserById(@PathVariable long  id) {
 	
 	return userService.findUserById(id);
