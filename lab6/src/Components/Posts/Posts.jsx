@@ -1,35 +1,29 @@
-import { useState } from "react";
-
- 
+import { useEffect, useState } from "react";
+import{getAllPosts} from '../Api/Api'
+import { useNavigate } from "react-router-dom";
+ const newArrPosts=[];
  export default function Posts(){
-    /*const arrposts = [
-        { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-        { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-        { id: 3, title: '1984', author: 'George Orwell' },
+            const navigate=useNavigate();
 
-        ];
-           const[newTitle, setNewTitle]=useState('');
-        
-            const updatePostTitle=(evt)=>{
-                arrposts[0]=newTitle;
-                setNewTitle(evt.target.values);
+            const[arrPost,setArrPost]=useState(newArrPosts);
 
-                
-            }*/
+              const fetchPosts=()=>{
+                  getAllPosts().then(response=>{
+                    setArrPost(response.data);  
 
-            const [arrPosts, setArrPosts] = useState([
-                { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-                { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-                { id: 3, title: '1984', author: 'George Orwell' },
-              ]);
-            
-              const [newTitle, setNewTitle] = useState('');
+                  })
+                  
+                  .catch(error=>console.log(error))
+              }
+              useEffect(()=>{
+                fetchPosts();
 
-              const updatePostTitle = () => {
-                const newArrPosts = [...arrPosts];
-                newArrPosts[0].title=newTitle;
-                setArrPosts(newArrPosts);
-               
+              },[]);
+
+              const showPostDetails=(postId)=>{
+                const selectedPost = arrPost.find(post => post.id === postId);
+                navigate(`/post-detail/${postId}`,{ state: { post: selectedPost } });
+
               };
 
           return (
@@ -38,34 +32,20 @@ import { useState } from "react";
                 <div  id="posts_div" className='row'>
                      {  
 
-                     arrPosts.map(
+                     arrPost.map(
                         row=>(
-                        <div className="card col-sm-3 mx-auto card-posts" >
+                        <div className="card col-sm-4 mx-auto card-posts" onClick={()=>showPostDetails(row.id)}>
                         <div class="card-body">
                             <p class="card-text">Id:{row.id}</p>
                             <p class="card-text">Title:{row.title}</p>
                             <p class="card-text">Author:{row.author}</p> 
+                            <p class="card-text">Content:{row.content}</p> 
                         </div>
                         </div>
                         )
                        )
                       }
-                    <div className="form-group row" style={{margin: '30px'}}>
-                    
-                         <label for="title" class="ciol-sm-4 form-label">Title</label>
-                        <div className="col-sm-4">
-                            <input type="text" id="title" className="form-control col-sm-12" name="txtTitle" 
-                            value={newTitle} onChange={(evt) => setNewTitle(evt.target.value)}/>
-                        </div>
-
-                        <div className='col-sm-4'>
-                        <button type="submit" className="btn btn-primary btn-flat" onClick={updatePostTitle}>Update title</button>
-                        </div>
-                     </div>
-
-                    
-                     
-
+                
                 </div>
                 </div>  
             )    
@@ -75,3 +55,4 @@ import { useState } from "react";
 
 }
 
+export {newArrPosts};

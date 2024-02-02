@@ -3,6 +3,7 @@ package com.lab3.lab3.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.lab3.lab3.entity.Comment;
@@ -30,6 +31,12 @@ public class CommentServiceImpl  implements CommentService{
 	public List<Comment> findAllComments() {
 		
 		return commentrepo.findAll();
+	}
+	@Override
+	public List<Comment> findCommentsByPostId(long id) {
+		
+		return commentrepo.findCommentsByPostId(id);
+		
 	}
 
 

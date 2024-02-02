@@ -19,9 +19,9 @@ import com.lab3.lab3.repo.PostRepo;
 import jakarta.transaction.Transactional;
 
 
-//@Repository
+@Repository
 @Aspect
-@Transactional
+//@Transactional
 public class LogerAdvise {
 	@Autowired
 	PostRepo postRepo;

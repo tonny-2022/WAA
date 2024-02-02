@@ -3,6 +3,7 @@ package com.lab3.lab3.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.lab3.lab3.service.PostService;
 
 @RestController
 @RequestMapping("/api/v3/posts")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 	@Autowired
 	PostService postservice;

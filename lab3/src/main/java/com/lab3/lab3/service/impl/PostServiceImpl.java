@@ -48,10 +48,19 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void updatePostById(Post post,long id) {
+	public Post updatePostById(Post post,long id) {
 		
-		postrepo.deleteById(id);
-		postrepo.save(post);
+		Post postToUpdate=postrepo.findById(id).orElse(null);
+		if(postToUpdate!=null){
+			postToUpdate.setAuthor(post.getAuthor());
+			postToUpdate.setContent(post.getContent());
+			postToUpdate.setTitle(post.getTitle());
+		   return postrepo.save(postToUpdate);
+		}
+		else {
+			
+		return null;	
+		}
 	
 		
 	}

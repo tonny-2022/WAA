@@ -1,34 +1,61 @@
-import { Formik,Form, Field} from "formik";
+
+import { useState } from "react";
+import { savePostApi } from "../Api/Api";
 
 
-export default function  NewUserComponent(){
+export default function  NewPost(){
+
+    const[saveMsg,setSaveMsg]=useState('');
+
+   const savePostToDb = (event) => {
+      event.preventDefault();
+
+      const title = event.target.title.value;
+      const author = event.target.author.value;
+      const content = event.target.content.value;
+
+      const values = {title, author, content };
+  
+      savePostApi(values)
+      .then(() => setSaveMsg('Record successfully saved')
    
+        )
+      .catch(() => setSaveMsg('Record fail to save'));
+  };
+
+
 
     return (
-    <div className="container">
-        <h2>Add New Post</h2>
-          <div>
-           <Formik>
-                      <Form >
-                        <fieldset className="form-group">
-                         <label>Title</label>
-                            <Field type="text"  className="form-control" name="title"/>
-                        </fieldset>
-                        <fieldset className="form-group">
-                         <label>Author</label>
-                            <Field type="text"  className="form-control" name="author"/>
-                        </fieldset>
-                        <fieldset className="form-group">
-                         <label>Post date</label>
-                            <Field type="date" className="form-control" name="postDate" />
-                        </fieldset>
-                        <div>
-                            <button className="btn btn-primary btn-flat" name="btnNewPost" type="submit"  >Add post</button>
-                        </div>
-                      </Form>
-                </Formik>
-              
+        <div className="container">
+        <form onSubmit={savePostToDb}>
+          <div className="card mx-auto card-post">
+          {saveMsg && <div className="alert alert-warning">{saveMsg}</div>}
+          <div className="card-body">
+          <h5>Add New Post  </h5>
+       
+          <div className="form-group">
+              <label>Title:</label>
+              <input type="text" className="form-control col-sm-6" name="title"/>
           </div>
+          <div className="form-group">
+              <label>Author:</label>
+              <input type="text" className="form-control col-sm-6 mb-3" name="author" />
+          </div>
+          
+          <div className="form-group">
+              <label>Content:</label>
+              <input type="text" className="form-control col-sm-6 mb-3" name="content"/>
+          </div>
+        <div className="form-group d-flex">
+          <div className='me-2'>
+              <button type="submit" className="btn btn-success btn-flat" >Save post </button>
+          </div>
+    
+        </div>    
+            
+          </div>
+          </div>
+          </form>
         </div>
     )
 }

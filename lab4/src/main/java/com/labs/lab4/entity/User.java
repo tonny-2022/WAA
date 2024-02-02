@@ -25,15 +25,18 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
     String name;
+    String password;
+    String role;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     List<Post> posts = new ArrayList<Post>();
-	public User( String name, List<Post> posts) {
+	public User( String name, String password,String role) {
 		super();
-		//this.id = id;
+		
 		this.name = name;
-		this.posts = posts;
-	}
+		this.password=password;
+		this.role=role;
+		}
 	public User() {}
 	public long getId() {
 		return id;
@@ -57,6 +60,18 @@ public class User {
 	public void addPostToUser(Post post) {
 		posts.add(post);
 		
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 

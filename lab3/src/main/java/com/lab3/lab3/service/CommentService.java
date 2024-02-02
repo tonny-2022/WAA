@@ -10,6 +10,7 @@ public interface CommentService {
 	
 	Comment saveComment(long postid,Comment comment);
 	List<Comment> findAllComments();
+	List<Comment>findCommentsByPostId(long id);
 
 
 

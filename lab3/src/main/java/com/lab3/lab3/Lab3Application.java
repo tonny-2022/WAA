@@ -21,7 +21,7 @@ public class Lab3Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Post post1 = new Post("Excel in real estates", "buying properties and resale  at prime times", "John Frank");
+		/*Post post1 = new Post("Excel in real estates", "buying properties and resale  at prime times", "John Frank");
 		Comment comment1 = new Comment("1234");
 		Comment comment2 = new Comment("67879");
 		Comment comment3 = new Comment("90865");
@@ -30,7 +30,7 @@ public class Lab3Application implements CommandLineRunner {
 		post1.addComment(comment2);
 		post1.addComment(comment3);
 		
-		postRepo.save(post1);
+		postRepo.save(post1);*/
 		
 		
 
